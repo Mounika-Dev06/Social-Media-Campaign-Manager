@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Create Campaign</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f6f8;
+            color: #222;
+        }
+
+        .header {
+            background: #222;
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 30px;
+        }
+
+        .header p {
+            color: #ddd;
+            margin-top: 8px;
+        }
+
+        .container {
+            max-width: 650px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .form-card {
+            background: white;
+            padding: 35px;
+            border-radius: 14px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.12);
+        }
+
+        .form-card h2 {
+            text-align: center;
+            margin-top: 0;
+            margin-bottom: 30px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 7px;
+            font-size: 15px;
+            font-family: Arial, sans-serif;
+        }
+
+        textarea {
+            min-height: 110px;
+            resize: vertical;
+        }
+
+        .date-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 13px;
+            background: #222;
+            color: white;
+            border: none;
+            border-radius: 7px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .submit-btn:hover {
+            background: #444;
+        }
+
+        .back {
+            display: block;
+            text-align: center;
+            margin-top: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            color: #222;
+        }
+
+        .back:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 600px) {
+
+            .form-card {
+                padding: 25px;
+            }
+
+            .date-row {
+                grid-template-columns: 1fr;
+            }
+
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="header">
+
+        <h1>📝 Create Campaign</h1>
+
+        <p>
+            Create a new social media campaign
+        </p>
+
+    </div>
+
+
+    <div class="container">
+
+        <div class="form-card">
+
+            <h2>Campaign Details</h2>
+
+            <form method="POST">
+
+                <label for="campaign_name">
+                    Campaign Name
+                </label>
+
+                <input
+                    type="text"
+                    id="campaign_name"
+                    name="campaign_name"
+                    placeholder="Enter campaign name"
+                    required
+                >
+
+
+                <label for="platform">
+                    Platform
+                </label>
+
+                <select
+                    id="platform"
+                    name="platform"
+                    required
+                >
+
+                    <option value="">
+                        Select Platform
+                    </option>
+
+                    <option value="Instagram">
+                        Instagram
+                    </option>
+
+                    <option value="Facebook">
+                        Facebook
+                    </option>
+
+                    <option value="Twitter">
+                        Twitter
+                    </option>
+
+                    <option value="YouTube">
+                        YouTube
+                    </option>
+
+                    <option value="LinkedIn">
+                        LinkedIn
+                    </option>
+
+                </select>
+
+
+                <label for="description">
+                    Campaign Description
+                </label>
+
+                <textarea
+                    id="description"
+                    name="description"
+                    placeholder="Enter campaign description"
+                    required
+                ></textarea>
+
+
+                <div class="date-row">
+
+                    <div>
+
+                        <label for="start_date">
+                            Start Date
+                        </label>
+
+                        <input
+                            type="date"
+                            id="start_date"
+                            name="start_date"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div>
+
+                        <label for="end_date">
+                            End Date
+                        </label>
+
+                        <input
+                            type="date"
+                            id="end_date"
+                            name="end_date"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="submit-btn"
+                >
+                    Create Campaign
+                </button>
+
+            </form>
+
+        </div>
+
+
+        <a
+            href="/"
+            class="back"
+        >
+            ← Back to Dashboard
+        </a>
+
+    </div>
+
+</body>
+</html>

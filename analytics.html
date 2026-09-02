@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Campaign Analytics</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f6f8;
+            color: #222;
+        }
+
+        .header {
+            background: #222;
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 30px;
+        }
+
+        .header p {
+            color: #ddd;
+            margin-top: 8px;
+        }
+
+        .container {
+            max-width: 950px;
+            margin: 35px auto;
+            padding: 0 20px;
+        }
+
+        .campaign-info {
+            background: white;
+            padding: 30px;
+            border-radius: 14px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.10);
+            margin-bottom: 30px;
+        }
+
+        .campaign-info h2 {
+            margin-top: 0;
+            margin-bottom: 20px;
+        }
+
+        .campaign-info p {
+            color: #555;
+            line-height: 1.5;
+        }
+
+        .status {
+            display: inline-block;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+        }
+
+        .scheduled {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .active {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .completed {
+            background: #e2e3e5;
+            color: #383d41;
+        }
+
+        .analytics-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .analytics-card {
+            background: white;
+            padding: 25px;
+            text-align: center;
+            border-radius: 14px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.10);
+            transition: 0.3s;
+        }
+
+        .analytics-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .icon {
+            font-size: 40px;
+        }
+
+        .analytics-card h2 {
+            font-size: 30px;
+            margin: 12px 0;
+        }
+
+        .analytics-card p {
+            font-weight: bold;
+            color: #555;
+            margin: 0;
+        }
+
+        .empty {
+            background: white;
+            padding: 35px;
+            text-align: center;
+            border-radius: 14px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.10);
+        }
+
+        .back {
+            display: block;
+            width: fit-content;
+            margin: 30px auto;
+            text-decoration: none;
+            color: #222;
+            font-weight: bold;
+        }
+
+        .back:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 800px) {
+            .analytics-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 500px) {
+            .analytics-container {
+                grid-template-columns: 1fr;
+            }
+
+            .campaign-info {
+                padding: 22px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="header">
+
+        <h1>📊 Campaign Analytics</h1>
+
+        <p>
+            Monitor your campaign performance
+        </p>
+
+    </div>
+
+
+    <div class="container">
+
+        {% if campaign and analytics %}
+
+            <div class="campaign-info">
+
+                <h2>
+                    {{ campaign["name"] }}
+                </h2>
+
+                <p>
+                    <b>Platform:</b>
+                    {{ campaign["platform"] }}
+                </p>
+
+                <p>
+                    <b>Description:</b>
+                    {{ campaign["description"] }}
+                </p>
+
+                <p>
+                    <b>Start Date:</b>
+                    {{ campaign["start_date"] }}
+                </p>
+
+                <p>
+                    <b>End Date:</b>
+                    {{ campaign["end_date"] }}
+                </p>
+
+                <p>
+                    <b>Status:</b>
+
+                    {% if analytics["status"] == "Scheduled" %}
+
+                        <span class="status scheduled">
+                            🟡 Scheduled
+                        </span>
+
+                    {% elif analytics["status"] == "Active" %}
+
+                        <span class="status active">
+                            🟢 Active
+                        </span>
+
+                    {% elif analytics["status"] == "Completed" %}
+
+                        <span class="status completed">
+                            ⚫ Completed
+                        </span>
+
+                    {% endif %}
+
+                </p>
+
+            </div>
+
+
+            <div class="analytics-container">
+
+                <div class="analytics-card">
+
+                    <div class="icon">👥</div>
+
+                    <h2>
+                        {{ analytics["reach"] }}
+                    </h2>
+
+                    <p>
+                        Reach
+                    </p>
+
+                </div>
+
+
+                <div class="analytics-card">
+
+                    <div class="icon">❤️</div>
+
+                    <h2>
+                        {{ analytics["likes"] }}
+                    </h2>
+
+                    <p>
+                        Likes
+                    </p>
+
+                </div>
+
+
+                <div class="analytics-card">
+
+                    <div class="icon">💬</div>
+
+                    <h2>
+                        {{ analytics["comments"] }}
+                    </h2>
+
+                    <p>
+                        Comments
+                    </p>
+
+                </div>
+
+
+                <div class="analytics-card">
+
+                    <div class="icon">🔄</div>
+
+                    <h2>
+                        {{ analytics["shares"] }}
+                    </h2>
+
+                    <p>
+                        Shares
+                    </p>
+
+                </div>
+
+            </div>
+
+        {% else %}
+
+            <div class="empty">
+
+                <h2>
+                    📊 No campaigns available
+                </h2>
+
+                <p>
+                    Create a campaign first to view analytics.
+                </p>
+
+            </div>
+
+        {% endif %}
+
+
+        <a
+            href="/"
+            class="back"
+        >
+            ← Back to Dashboard
+        </a>
+
+    </div>
+
+</body>
+</html>
